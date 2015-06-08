@@ -1,0 +1,21 @@
+[
+{
+  "modid": "miscmod",
+  "name": "Miscellaneous Mod",
+  "description": "IF YOU SEE THIS... IT WORKED!!!",
+  "version": "1.0",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "Riphtix"
+  ],
+  "credits": "Pahimar's youtube series.",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
