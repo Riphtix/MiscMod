@@ -1,6 +1,8 @@
 package com.riphtix.miscmod;
 
+import com.riphtix.miscmod.client.render.items.ItemRenderRegister;
 import com.riphtix.miscmod.handler.ConfigurationHandler;
+import com.riphtix.miscmod.items.ModItems;
 import com.riphtix.miscmod.proxy.IProxy;
 import com.riphtix.miscmod.reference.Reference;
 import com.riphtix.miscmod.utility.LogHelper;
@@ -10,6 +12,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class MiscMod {
@@ -32,8 +35,13 @@ public class MiscMod {
      */
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        //Config
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+
+        //Items
+        ModItems.createItems();
+
 
         LogHelper.info("Pre Initialization Complete!!!");
     }
@@ -48,6 +56,10 @@ public class MiscMod {
      */
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+
+        if(event.getSide() == Side.CLIENT){
+            ItemRenderRegister.registerItemRenderer();
+        }
 
         LogHelper.info("Initialization Complete!!!");
     }
